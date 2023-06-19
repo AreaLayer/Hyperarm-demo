@@ -20,9 +20,14 @@
       <label for="plan">Select a Plan:</label>
       <select id="plan" name="plan" required>
         <option value="">Choose a plan</option>
-        <option value="basic">Basic</option>
-        <option value="pro">Pro</option>
-        <option value="enterprise">Enterprise</option>
+        <option value="basic">Basic -Free</option>
+        <option value="pro">Pro - APi with support</option>
+        <option value="enterprise">Enterprise- Large support</option>
+        <label for="plan">Select a payment:</label>
+        <select id="payment" name="payment" required>
+          <option value="">Choose a form of payment</option>
+          <option value="Bitcoin-LN">invoice</option>
+          <option value="Bitcoin-OnChain">Adress</option>
       </select>
 
       <input type="submit" value="Subscribe">
