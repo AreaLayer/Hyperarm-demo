@@ -1,39 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hyperarm - API Subscription Plan</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Subscription Plans</title>
 </head>
 <body>
-  <div class="container">
-    <h1>Hyperarm - API Subscription Plan</h1>
-    <form>
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" optional>
+  <h1>Subscription Plans</h1>
+  <div id="plans"></div>
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" optional>
+  <script>
+    async function fetchSubscriptionPlans() {
+      const response = await fetch('/subscription-plans');
+      const plans = await response.json();
 
-      <label for="Nostr">Npub:</label>
-      <input type="npub" id="npub" ame="Npub" optional>
+      const plansDiv = document.getElementById('plans');
 
-      <label for="plan">Select a Plan:</label>
-      <select id="plan" name="plan" required>
-        <option value="">Choose a plan</option>
-        <option value="basic">Basic -Free</option>
-        <option value="pro">Pro - APi with support</option>
-        <option value="enterprise">Enterprise- Large support</option>
-      </select>
-        
-        <label for="plan">Select a payment:</label>
-        <select id="payment" name="payment" required>
-          <option value="">Choose a form of payment</option>
-          <option value="Bitcoin-LN">invoice</option>
-          <option value="Bitcoin-OnChain">Adress</option>
-      </select>
+      plans.forEach(plan => {
+        const planDiv = document.createElement('div');
+        planDiv.innerHTML = `
+          <h3>${plan.name}</h3>
+          <p>${plan.description}</p>
+          <p>Price: $${plan.price}</p>
+        `;
+        plansDiv.appendChild(planDiv);
+      });
+    }
 
-      <input type="submit" value="Subscribe">
-    </form>
-  </div>
+    fetchSubscriptionPlans();
+  </script>
 </body>
 </html>
